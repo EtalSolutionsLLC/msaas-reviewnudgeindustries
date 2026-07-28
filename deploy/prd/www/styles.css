@@ -141,3 +141,45 @@ p.lead { font-size: 20px; color: var(--muted); max-width: 720px; }
 @media (max-width:760px) { .directory-hero { grid-template-columns:1fr; padding-top:28px; } .directory-actions { justify-content:flex-start; } .guide-grid,.resource-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media (max-width:520px) { .guide-grid,.resource-grid { grid-template-columns:1fr; } }
 /* RN Industries publication refinement end */
+
+/* RN Industries simplified home/nav start */
+.home-hub-hero {
+  padding-top: 34px;
+  padding-bottom: 12px;
+  grid-template-columns: 1fr;
+}
+.home-hub-hero h1 {
+  max-width: 920px;
+}
+.home-hub-section {
+  padding-top: 12px;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.nav-links {
+  gap: 16px;
+}
+.guide-card {
+  min-height: 168px;
+}
+.guide-card-link {
+  min-height: 168px;
+  padding: 16px;
+}
+.guide-card h3 {
+  font-size: 19px;
+}
+.guide-card p {
+  font-size: 14px;
+  line-height: 1.36;
+}
+/* RN Industries simplified home/nav end */
