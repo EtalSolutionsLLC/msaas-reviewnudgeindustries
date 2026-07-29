@@ -1,3 +1,12 @@
 {
-  "SITE_URL": "https://reviewnudgeindustries-dev.localtest.me"
+  "PROJECT_ID": "reviewnudgeindustri-1785255283",
+  "STACK": "reviewnudgeindustries-prd",
+  "DEPLOYMENT_ID": "reviewnudgeindustri-1785255283",
+  "APP_SLUG": "reviewnudgeindustries",
+  "DEPLOY_ENV": "prd",
+  "APP_HOST": "reviewnudgeindustries.etal.solutions",
+  "APP_URL": "https://reviewnudgeindustries.etal.solutions",
+  "SITE_URL": "https://reviewnudgeindustries.etal.solutions",
+  "URI_SCHEME": "https:",
+  "LOG_FORMAT": "text"
 }
