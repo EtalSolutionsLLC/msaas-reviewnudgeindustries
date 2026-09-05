@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd -- "${1:-.}"
+
+find . -type f -name '*.html' -print0 |
+while IFS= read -r -d '' file; do
+	perl -0pi -e '
+		s/<!-- PM:TRACKING-CONSENT -->/<!-- PM:TRACKING-CONSENT-PART1 -->/g;
+		s/<!-- \/PM:TRACKING-CONSENT -->/<!-- \/PM:TRACKING-CONSENT-PART1 -->/g;
+
+		if (!/<!-- PM:TRACKING-CONSENT-PART2 -->/) {
+			s{<body>}{<body>\n<!-- PM:TRACKING-CONSENT-PART2 -->\n<!-- /PM:TRACKING-CONSENT-PART2 -->};
+		}
+	' "$file"
+
+	printf 'Processed %s\n' "$file"
+done
