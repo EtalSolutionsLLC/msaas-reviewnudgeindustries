@@ -30,7 +30,7 @@ jobs:
       DEPLOY_DIR: site/deploy/prd
       PAGES_SITE_DIR: site/deploy/prd/www
       OPS_DIR: ops-and-sops
-      ETALSOLUTIONSLLC_OPS_AND_SOPS_READONLY_TOKEN: ${{ secrets.ETALSOLUTIONSLLC_OPS_AND_SOPS_READONLY_TOKEN }}
+      ETALSOLUTIONSLLC_OPS_AND_SOPS_READ_TOKEN: ${{ secrets.ETALSOLUTIONSLLC_OPS_AND_SOPS_READ_TOKEN }}
 
     steps:
       - name: Check out project
@@ -44,13 +44,13 @@ jobs:
         run: |
           set -euo pipefail
 
-          [[ -n "${ETALSOLUTIONSLLC_OPS_AND_SOPS_READONLY_TOKEN}" ]] || {
-            echo "::error::ETALSOLUTIONSLLC_OPS_AND_SOPS_READONLY_TOKEN is required to read private domer6811/ops-and-sops"
+          [[ -n "${ETALSOLUTIONSLLC_OPS_AND_SOPS_READ_TOKEN}" ]] || {
+            echo "::error::ETALSOLUTIONSLLC_OPS_AND_SOPS_READ_TOKEN is required to read private domer6811/ops-and-sops"
             exit 1
           }
 
           mkdir $OPS_DIR
-          export GITHUB_TOKEN="${ETALSOLUTIONSLLC_OPS_AND_SOPS_READONLY_TOKEN}"
+          export GITHUB_TOKEN="${ETALSOLUTIONSLLC_OPS_AND_SOPS_READ_TOKEN}"
 
           git clone --filter=blob:none --sparse https://x-access-token:${GITHUB_TOKEN}@github.com/EtalSolutionsLLC/ops-and-sops.git $OPS_DIR
           cd $OPS_DIR
