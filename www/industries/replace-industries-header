@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+target_dir="${1:-.}"
+
+cd -- "$target_dir"
+
+updated_files=0
+replacements=0
+
+while IFS= read -r -d '' file; do
+    count="$({
+        perl -0pi -e '
+            BEGIN {
+                $target = <<"HTML";
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <nav class="nav" aria-label="Primary navigation">
+    <a class="brand" href="/">ReviewNudge <span>Industries</span></a>
+    <div class="nav-links">
+      <a href="/resources/">Resources</a>
+      <a href="https://reviewnudge.etal.solutions" rel="noopener noreferrer" target="_blank">About ReviewNudge</a>
+      <a class="btn btn-primary" href="https://reviewnudge.etal.solutions/setup" rel="noopener noreferrer" target="_blank">Try ReviewNudge</a>
+    </div>
+  </nav>
+</header>
+HTML
+                $replacement = <<"HTML";
+<!-- PM:INDUSTRIES-HEADER -->
+<!-- /PM:INDUSTRIES-HEADER -->
+HTML
+            }
+
+            $count = s/\Q$target\E/$replacement/g;
+
+            END {
+                print STDERR "$count\n";
+            }
+        ' "$file"
+    } 2>&1 >/dev/null)"
+
+    if (( count > 0 )); then
+        ((updated_files += 1))
+        ((replacements += count))
+        printf 'Updated %s: replacements=%d\n' "$file" "$count"
+    fi
+done < <(find . -type f -name '*.html' -print0)
+
+printf 'Complete: files=%d replacements=%d\n' "$updated_files" "$replacements"

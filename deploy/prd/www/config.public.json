@@ -8,5 +8,6 @@
   "APP_URL": "https://reviewnudgeindustries.solutionsetal.com",
   "SITE_URL": "https://reviewnudgeindustries.solutionsetal.com",
   "URI_SCHEME": "https:",
-  "LOG_FORMAT": "text"
+  "LOG_FORMAT": "text",
+  "DB_NAME": ""
 }
