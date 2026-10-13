@@ -1,10 +1,9 @@
 APP_SLUG=reviewnudgeindustries
 # <blank> means this public site is not using change-management environment suffixing.
-DEPLOY_ENV=prd
-RUNTIME_ADAPTER_CODE=static-github
+DEPLOY_ENV=dev
+RUNTIME_ADAPTER_CODE=static-local
 STACK=${APP_SLUG}${DEPLOY_ENV:+-${DEPLOY_ENV}}
-LOCAL_DOMAIN=solutionsetal.com
-APP_HOST=${APP_SLUG}.${LOCAL_DOMAIN}
+LOCAL_DOMAIN=localtest.me
 # ------------------------------
 # anything below this line probably should not be edited manually
 # ------------------------------
@@ -12,15 +11,16 @@ ENV_ROOT=${REPO_ROOT}
 SITE_ROOT=${ENV_ROOT}/www
 SITE_DIR=${SITE_ROOT}
 LOG_DIR=${REPO_ROOT}/logs
+APP_HOST=${STACK}.${LOCAL_DOMAIN}
 URI_SCHEME=https:
 SITE_URL=${URI_SCHEME}//${APP_HOST}
-APP_URL=${URI_SCHEME}//${APP_HOST}
 PUBLIC_BROWSER_CONFIG_KEYS=SITE_URL
 PUBLIC_BROWSER_CONFIG_PATH=${SITE_DIR}/config.public.json
 SITE_BRAND_NAME="Et al Solutions LLC"
-SITE_CONTACT_EMAIL=info@
-GTM_CONTAINER_ID=GTM-WR65LZ8B
-ANALYTICS_NOTES="The site installs Google Tag Manager only. GA4/Google Tag should be configured inside the GTM container to avoid duplicate page_view events."
+SITE_CONTACT_EMAIL=info@etalsolutions.tech
+PM_WEB_ANALYTICS_PROVIDER=google-tag-manager
+GTM_CONTAINER_ID=GTM-5LCBZRJG
+ANALYTICS_NOTES="Local code manages consent and loads GTM after opt-in. Configure GA4 entirely inside the GTM container."
 PM_STATIC_EXCLUDE_DIRS=capture,deploy
 DEPLOYMENT_ID=reviewnudgeindustri-1785255283
 PROJECT_ID=reviewnudgeindustri-1785255283
